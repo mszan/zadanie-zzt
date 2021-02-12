@@ -1,0 +1,27 @@
+// Google Fonts - Open Sans.
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap');
+
+// Colors.
+$accent: #7289da;
+$light: #fff;
+$dark1: #99aab5;
+$dark2: #2c2f33;
+$dark3: #23272a;
+
+// Global styles.
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    background-color: $dark3;
+    color: $light;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover {
+    color: $accent;
+}

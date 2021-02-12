@@ -2,10 +2,10 @@
 // John Resig - https://johnresig.com/ - MIT Licensed
 const cache = {};
 
-export const engine = (str, data) => {
+export const engine = (str, templateFile, data) => {
   // Figure out if we're getting a template, or if we need to
   // load the template - and be sure to cache the result.
-  const fn = !/\W/.test(str) ? cache[str] = cache[str] || engine(document.getElementById(str).innerHTML) :
+  const fn = !/\W/.test(str) ? cache[str] = cache[str] || engine(templateFile) :
     // Generate a reusable function that will serve as a template
     // generator (and which will be cached).
     new Function("obj",

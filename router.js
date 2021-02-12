@@ -5,12 +5,13 @@ let el = null;
 let events = [];
 const routes = {};
 
-export const route = (path, templateId, controller) => {
+export const route = (path, templateId, templateFile, controller) => {
   const listeners = [];
   controller.prototype.$on = (selector, evt, handler) => events.push([selector, evt, handler]);
   controller.prototype.$refresh = () => listeners.forEach(fn => fn());
   routes[path] = {
     templateId: templateId,
+    templateFile: templateFile,
     controller: controller,
     onRefresh: listeners.push.bind(listeners)
   };
@@ -42,7 +43,7 @@ const router = () => {
     route.onRefresh(() => {
       forEachEvent('removeEventListener');
       // Render route template with John Resig's template engine:
-      el.innerHTML = engine(route.templateId, ctrl);
+      el.innerHTML = engine(route.templateId, route.templateFile, ctrl);
       forEachEvent('addEventListener');
     });
     // Trigger the first refresh:
