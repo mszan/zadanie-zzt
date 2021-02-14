@@ -1,5 +1,5 @@
-import "./css/main.scss";
-import { route } from './router';
+import './css/main.scss';
+import {route} from './router.js';
 import home from './components/home.html';
 import example1 from './components/example1.html';
 import example2 from './components/example2.html';
