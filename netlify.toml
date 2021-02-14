@@ -1,5 +1,9 @@
 [build]
   functions = "functions"
+  publish = "dist"
+
+[dev]
+  publish = "src"
 
 [[redirects]]
   from = "/api/login"
