@@ -2,57 +2,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap');
 
 // Colors.
-$accent: #7289da;
-$light: #e6e6e6;
-$dark1: #555555;
-$dark2: #2c2f33;
-$dark3: #23272a;
+//// Accent colors.
+$colorAccent1: #3481C1;
+$colorAccent2: #9CC4EC;
 
+//// Light colors.
+$colorLight1: #F2F5F6;
+$colorLight2: #E8EBEE;
+$colorLight3: #D9DADB;
+
+//// Dark colors.
+$colorDark1: #344049;
+
+// Custom classes.
+.btnDark {
+    background-color: $colorAccent1;
+    color: $colorLight1;
+    border: 1px solid $colorAccent1;
+
+    &:hover, &:disabled {
+        background-color: $colorLight2;
+        color: $colorAccent1;
+        border: 1px solid $colorLight3;
+    }
+}
+
+.btnLight {
+    background-color: $colorLight1;
+    color: $colorAccent1;
+
+    &:hover, &:disabled {
+        background-color: $colorAccent1;
+        color: $colorLight2;
+        border: 1px solid $colorLight3;
+    }
+}
+
+// Global styles.
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
-    background-color: $light;
-    color: $dark2;
+    background-color: $colorAccent1;
+    color: $colorLight1;
 }
 
-input {
-    border-radius: 0;
-    border: none;
+input, button {
+    border-radius: 3px;
+    border: 1px solid $colorLight2;
     outline: none;
-    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
     padding: 5px;
     margin-bottom: 10px;
-    transition: background-color 100ms ease-in-out;
-
-    &[type="submit"] {
-        cursor: pointer;
-        padding: 10px;
-        margin: 10px;
-        background-color: $accent;
-        color: $light;
-        &:hover {
-            background-color: $light;
-            color: $dark2;
-        }
-    }
+    height: 2rem;
 }
 
-.navbar {
+button {
+    cursor: pointer;
+    height: 3em;
+    transition: background-color 200ms ease-in-out, border 300ms ease-in-out;
+
+    &:disabled {cursor: not-allowed;}
+}
+
+h1 {font-weight: 300;}
+
+i {margin-right: .3rem;}
+
+#app {margin: 5vh 10vw;}
+
+// Section styles.
+//// Navbar.
+#navbar {
     width: 100%;
-    background-color: $dark1;
+    background-color: $colorLight1;
     overflow: auto;
+
     a {
         float: left;
         text-align: center;
         padding: 12px;
-        color: white;
+        color: $colorAccent1;
         text-decoration: none;
         font-size: 17px;
-        transition: background-color 100ms ease-in-out;
+        transition: background-color 100ms ease-in-out, letter-spacing 200ms ease-in-out;
     }
+
     a:hover {
-        background-color: $accent;
+        letter-spacing: 2px;
+        background-color: $colorLight2;
     }
 
     @media screen and (max-width: 500px) {
@@ -63,30 +100,62 @@ input {
     }
 }
 
-#app {
-    margin: 5vh 10vw;
-}
-
-.home {
+//// Home.
+#home {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    .formWrapper {
+
+    // Div element with form elements.
+    .loginForm {
+        border-radius: 3px;
         text-align: center;
-        color: $light;
-        background-color: $dark1;
-        width: 300px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-        padding: 15px;
-        h1 {
-            margin: 10px;
-        }
+        color: $colorDark1;
+        background-color: $colorLight1;
+        width: 90vw;
+        max-width: 300px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+        padding: 30px;
+
+        h1 {margin: 10px 0;}
+
         label {
-            display: inline-block;
-            padding: 10px 0 5px 0;
+            float: left;
+            padding: 10px 0 2px 0;
+            font-size: .8rem;
+            color: $colorDark1
         }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        button {
+            box-sizing: border-box;
+            width: 100%;
+
+            &[type=submit] {margin-top: 1rem;}
+        }
+
+        // Span element that displays fetch response message.
+        .formMsg--Success {color: green;}
+        .formMsg--Error {color: red;}
+        .formMsg--Warning {color: orange;}
     }
-    //text-align: center;
+}
+
+//// Footer.
+#footer {
+    color: #9CC9ED;
+
+    span {
+        position: absolute;
+        bottom: 3vh;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
 }

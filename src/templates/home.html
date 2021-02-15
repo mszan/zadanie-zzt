@@ -1,0 +1,13 @@
+<div id="home">
+    <div class="loginForm">
+        <h1><%= formHeader %></h1>
+        <form id="loginForm" action="">
+            <label for="username"><i class="fas fa-user"></i>Username</label><br>
+            <input type="text" id="username"><br>
+            <label for="password"><i class="fas fa-lock"></i>Password</label><br>
+            <input type="password" id="password"><br>
+            <button type="submit" class="btnDark"><i class="fas fa-check"></i>Submit</button>
+        </form>
+        <span style="font-size: .8rem" class="<%=formMsgClass%>"><%= formMsg %></span>
+    </div>
+</div>
