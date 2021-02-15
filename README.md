@@ -1,83 +1,30 @@
-# zadanie
+# Recruitment task - Zwolnieni z Teorii
+## Table of contents
+* [General info](#general-info)
+* [Live demo](#live-demo)
+* [Project structure](#project-structure)
 
-Cześć!  
-Do stworzenia jest prosta aplikacja w oparciu o mini-framework `PureJS`. Aplikacja powinna składać się z dwóch widoków:
-1. Home - prosty formularz z polami `username` i `password`, przycisk `submit`.
-2. Success - strona powitalna z informacją o udanej akcji.
+## General info
+This is a website built with Webpack along with [John Resig's Micro-Templating](https://johnresig.com/blog/javascript-micro-templating/) and [Joakim Carlstein's router](https://joakim.beng.se/blog/posts/a-javascript-router-in-20-lines.html).
+![](https://i.imgur.com/0yKkkrA.png)
 
-Po przesłaniu formularza aplikacja powinna przekierować do strony success lub wyświetlić informację o błędzie.
+## Live demo
+Live demo is available at [netlify](https://mszan-zadanie-zzt.netlify.app).
 
-##### Część zaawansowana
-Zmodyfikuj projekt w taki sposób, aby każda templatka była w osobnym pliku. To zadanie wymaga trochę kreatywności, być może trzeba będzie rozbudować konfigurację webpack'a, być może zmodyfikować logikę `engine.js` lub `router.js`. Wszystkie chwyty dozwolone. Cel jest taki, aby templatki były tworzone poza `index.html`.
+## Project structure
 
-##### Rozwiązanie
-Na rozwiązanie składa się:
-- link do repozytorium
-- screenshot widoku home
-
-Oceniamy:
-- działające rozwiązanie
-- czysty i dobrze napisany kod
-- minimalistyczny i estetyczny design
-
-## Dokumentacja PureJS
-
-Framework składa się z dwóch części
-1. `engine.js` - silnik templatek
-2. `router.js` - router i logika kontrolerów
-
-##### Dodawanie widoków
-
-Aby stworzyć widok należy:
-1. Dodać templatkę w `index.html` z odpowiednim `id`
-2. Zarejestrować widok przy pomocy metody `route`
-
-```javascript
-route('/path/to/view', 'idSelector', function() {
-  // controller logic
-})
-```
-
-##### Logika kontrolerów
-
-1. `template` - interpolacja (*example 1*) - zmienne w kontrolerach są interpolowane na templatki (`<%= nazwa zmiennej %>`). Dodatkowo templatki wykonują czysty JavaScript taki jak np. pętle (`<% console.log('js is in the air!') %>`.
-
-2. `$on` - rejestracja eventów (*example 2*) - aby podpiąć obsługę eventu należy skorzystać z metody `$on`, zgodnie z sygnaturą: `this.$on('.css-selector', 'eventType', (ev) => { /* event handler */ });`
-
-3. `$refresh` - wymuszony rerender (*example 2*) - metoda umożliwiająca odświeżenie całego widoku np. na wypadek zmiany wartości pól.
-
-## Dokumentacja API
-*Example request*
-```
-POST https://zwzt-zadanie.netlify.app/api/login
-
-{
-  username: 'zwzt',
-  password: 'secret'
-}
-```
-*Example response*
-```
-{
-  message: 'Login success!',
-  token: 'eyJhbGciOiJIUz...'
-}
-```
-
-Aby otrzymać komunikat o błędzie, trzeba w polu `password` wpisać `error`
-
-*Example request*
-```
-POST https://zwzt-zadanie.netlify.app/api/login
-{
-  username: 'zwzt',
-  password: 'error'
-}
-```
-*Example response*
-```
-{
-  message: 'Wrong password!',
-  error: true
-}
-```
+- `dist` - distribution files
+  - `index.html` - generated from `src/index.html` main template by [HtmlWebPackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/)
+  - `bundle.js` 
+- `src` - source files
+    - `css` - styles
+        - `main.scss`
+    - `templates` - routes templates
+        - `404.html`
+        - `home.html`
+        - `success.html`
+    - `app.js` - entry script; contains routes and login-related functions
+    - `engine.js` - slightly modified John Resig's templating engine
+    - `router.js` - slightly modified Joakim Carlstein router
+    - `index.html` - output entry HTML template; the only template outside `template` directory
+- `functions` - netlify functions
